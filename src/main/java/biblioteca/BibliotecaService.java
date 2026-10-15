@@ -142,4 +142,3 @@ public class BibliotecaService {
     public List<Libro> getLibros() { return libros; }
     public List<Prestamo> getPrestamos() { return prestamos; }
 }
-
