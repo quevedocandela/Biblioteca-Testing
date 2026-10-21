@@ -34,9 +34,10 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{id=" + id + ", isbn=" + isbn + ", '" + titulo + "', autor=" + autor
-                + ", editorial=" + editorial + ", ejemplares=" + cantidad
-                + ", disponibles=" + disponibles
-                + ", " + (disponibles > 0 ? "Disponible" : "No disponible") + "}";
+        return "Libro N° " + id + " | ISBN: " + isbn + " | \"" + titulo + "\" - " + autor
+                + " | Editorial: " + editorial
+                + " | Ejemplares: " + cantidad + " | Disponibles: " + disponibles
+                + " | " + (disponibles > 0 ? "Disponible" : "No disponible")
+                + " | Estado: " +  (activo ? "Activo" : "Inactivo");
     }
 }
