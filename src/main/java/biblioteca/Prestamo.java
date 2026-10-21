@@ -38,8 +38,10 @@ public class Prestamo {
 
     @Override
     public String toString() {
-        return "biblioteca.Prestamo{id=" + id + ", socio=" + socio.getDni() + ", libro='" + libro.getTitulo()
-                + "', prestado=" + fechaPrestamo + ", prevista" + fechaPrevista
-                + ", devolucion=" + fechaDevolucion + ", estado=" + estado + "}";
+        return "Préstamo N° " + id + " | Socio: " + socio.getNombre() + " " + socio.getApellido()
+                + " (DNI " + socio.getDni() + ") | Libro: \"" + libro.getTitulo() + "\""
+                + " | Prestado: " + fechaPrestamo + " Devolución prevista: " + fechaPrevista
+                + " | Devuelto: " + (fechaDevolucion == null ? "-" : fechaDevolucion)
+                + " | Estado: " + (estado == Estado.ACTIVO ? "Activo" : "Devuelto");
     }
 }
