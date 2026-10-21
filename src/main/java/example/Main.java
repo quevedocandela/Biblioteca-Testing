@@ -70,7 +70,7 @@ public class Main {
             try {
                 return LocalDate.parse(leer(msg + " (AAAA-MM-DD): ").trim());
             } catch (Exception e) {
-                System.out.println("Fecha invalida. Formato  válido AAAA-MM-DD");
+                System.out.println("Fecha invalida. Formato válido AAAA-MM-DD");
             }
         }
     }

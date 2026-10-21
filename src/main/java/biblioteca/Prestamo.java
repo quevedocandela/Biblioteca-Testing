@@ -40,7 +40,7 @@ public class Prestamo {
     public String toString() {
         return "Préstamo N° " + id + " | Socio: " + socio.getNombre() + " " + socio.getApellido()
                 + " (DNI " + socio.getDni() + ") | Libro: \"" + libro.getTitulo() + "\""
-                + " | Prestado: " + fechaPrestamo + " Devolución prevista: " + fechaPrevista
+                + " | Prestado: " + fechaPrestamo + " | Devolución prevista: " + fechaPrevista
                 + " | Devuelto: " + (fechaDevolucion == null ? "-" : fechaDevolucion)
                 + " | Estado: " + (estado == Estado.ACTIVO ? "Activo" : "Devuelto");
     }
