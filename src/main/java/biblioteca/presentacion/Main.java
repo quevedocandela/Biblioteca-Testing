@@ -5,6 +5,7 @@ import biblioteca.datos.SocioDAO;
 import biblioteca.datos.LibroDAO;
 import biblioteca.datos.PrestamoDAO;
 import biblioteca.negocio.SocioService;
+import biblioteca.negocio.LibroService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,6 +32,17 @@ public class Main {
             rs.next();
             System.out.println("Filas en " + tabla + ": " + rs.getInt(1));
         }
+
+        LibroService libroService = new LibroService();
+        probar(() -> libroService.registrar("  ", "Autor", null, 2000));      // título vacío
+        probar(() -> libroService.registrar("Título", "Autor", null, 3000));  // año futuro
+        probar(() -> libroService.darDeBaja(1));                               // está prestado
+        probar(() -> libroService.darDeBaja(8));                               // ya inactivo
+        probar(() -> libroService.buscarPorId(99));                            // no existe
+        probar(() -> libroService.buscarPorTituloOAutor("  "));                // búsqueda vacía
+        System.out.println("Disponible libro 1? " + libroService.estaDisponible(libroService.buscarPorId(1)));
+        System.out.println("Disponible libro 2? " + libroService.estaDisponible(libroService.buscarPorId(2)));
+        System.out.println("Disponible libro 8? " + libroService.estaDisponible(libroService.buscarPorId(8)));
 
         SocioService socios = new SocioService();
         probar(() -> socios.registrar(1001, "99999999", "Ana", "Prueba"));  // número repetido
