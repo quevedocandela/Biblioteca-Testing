@@ -2,6 +2,7 @@ package biblioteca.presentacion;
 
 import biblioteca.datos.ConexionBD;
 import biblioteca.datos.SocioDAO;
+import biblioteca.datos.LibroDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,9 +29,18 @@ public class Main {
             rs.next();
             System.out.println("Filas en " + tabla + ": " + rs.getInt(1));
         }
+
         SocioDAO dao = new SocioDAO();
         dao.listarTodos().forEach(System.out::println);
         System.out.println("Buscar 1003: " + dao.buscarPorNumero(1003));
         System.out.println("Buscar 9999: " + dao.buscarPorNumero(9999));
+
+        LibroDAO libros = new LibroDAO();
+        System.out.println("Buscar 'rayuela': " + libros.buscarPorTituloOAutor("rayuela"));
+        System.out.println("Buscar 'borges': " + libros.buscarPorTituloOAutor("borges"));
+        System.out.println("Libro 1 prestado? " + libros.estaPrestado(1));
+        System.out.println("Libro 2 prestado? " + libros.estaPrestado(2));
+        System.out.println("Libro 8: " + libros.buscarPorId(8));
     }
+
 }
