@@ -6,6 +6,7 @@ import biblioteca.datos.LibroDAO;
 import biblioteca.datos.PrestamoDAO;
 import biblioteca.negocio.SocioService;
 import biblioteca.negocio.LibroService;
+import biblioteca.negocio.PrestamoService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -32,6 +33,20 @@ public class Main {
             rs.next();
             System.out.println("Filas en " + tabla + ": " + rs.getInt(1));
         }
+
+        PrestamoService prestamoService = new PrestamoService();
+        probar(() -> prestamoService.registrarPrestamo(9999, 2));   // socio inexistente
+        probar(() -> prestamoService.registrarPrestamo(1003, 2));   // socio inactivo
+        probar(() -> prestamoService.registrarPrestamo(1002, 2));   // préstamo vencido
+        probar(() -> prestamoService.registrarPrestamo(1004, 2));   // 3 sin devolver
+        probar(() -> prestamoService.registrarPrestamo(1001, 99));  // libro inexistente
+        probar(() -> prestamoService.registrarPrestamo(1001, 8));   // libro inactivo
+        probar(() -> prestamoService.registrarPrestamo(1001, 1));   // libro ya prestado
+        probar(() -> prestamoService.registrarDevolucion(99));      // préstamo inexistente
+        probar(() -> prestamoService.registrarDevolucion(2));       // ya devuelto
+        System.out.println("Vigentes: " + prestamoService.listarVigentes().size());
+        System.out.println("Vencidos: " + prestamoService.listarVencidos().size());
+        System.out.println("Historial 1001: " + prestamoService.historialDeSocio(1001).size());
 
         LibroService libroService = new LibroService();
         probar(() -> libroService.registrar("  ", "Autor", null, 2000));      // título vacío
