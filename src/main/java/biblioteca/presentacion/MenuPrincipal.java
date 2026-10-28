@@ -32,8 +32,7 @@ public class MenuPrincipal {
             try {
                 switch (opcion) {
                     case 1 -> ingresarComoSocio();
-                    case 2 -> System.out.println("El menú de bibliotecario se habilita en el próximo paso.");
-                    case 3 -> System.out.println("El menú de administrador se habilita en el próximo paso.");
+                    case 2 -> new MenuBibliotecario(socioService, libroService, prestamoService).mostrar();                    case 3 -> System.out.println("El menú de administrador se habilita en el próximo paso.");
                     case 0 -> System.out.println("Hasta luego.");
                     default -> System.out.println("Opción inválida.");
                 }
@@ -82,6 +81,11 @@ public class MenuPrincipal {
                 System.out.println("Ingrese un número válido o deje el campo vacío.");
             }
         }
+    }
+
+    /** Pregunta S/N y devuelve true si se respondió "S". */
+    static boolean confirmar(String mensaje) {
+        return leerTexto(mensaje + " (S/N): ").trim().equalsIgnoreCase("S");
     }
 
     /** Imprime libros indicando si cada uno está disponible. */
