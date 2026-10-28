@@ -1,10 +1,12 @@
 package biblioteca.presentacion;
 
 import biblioteca.datos.ConexionBD;
+import biblioteca.datos.SocioDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 
 /** PROVISIONAL: solo prueba la conexión. Se reemplaza en la rama feature/menus. */
 public class Main {
@@ -26,5 +28,9 @@ public class Main {
             rs.next();
             System.out.println("Filas en " + tabla + ": " + rs.getInt(1));
         }
+        SocioDAO dao = new SocioDAO();
+        dao.listarTodos().forEach(System.out::println);
+        System.out.println("Buscar 1003: " + dao.buscarPorNumero(1003));
+        System.out.println("Buscar 9999: " + dao.buscarPorNumero(9999));
     }
 }
