@@ -1,0 +1,5 @@
+# Copiá este archivo como "db.properties" y completá tus datos.
+# db.properties NO se sube al repositorio (está en .gitignore).
+db.url=jdbc:postgresql://localhost:5432/biblioteca
+db.user=postgres
+db.password=tu_contraseña_aquí
