@@ -32,7 +32,8 @@ public class MenuPrincipal {
             try {
                 switch (opcion) {
                     case 1 -> ingresarComoSocio();
-                    case 2 -> new MenuBibliotecario(socioService, libroService, prestamoService).mostrar();                    case 3 -> System.out.println("El menú de administrador se habilita en el próximo paso.");
+                    case 2 -> new MenuBibliotecario(socioService, libroService, prestamoService).mostrar();
+                    case 3 -> new MenuAdministrador(socioService, libroService, prestamoService).mostrar();
                     case 0 -> System.out.println("Hasta luego.");
                     default -> System.out.println("Opción inválida.");
                 }
