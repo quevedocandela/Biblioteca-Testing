@@ -1,4 +1,4 @@
-package biblioteca;
+package biblioteca.negocio;
 
 import static org.junit.jupiter.api.Assertions.*;
 

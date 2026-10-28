@@ -1,4 +1,4 @@
-package biblioteca;
+package biblioteca.modelo;
 
 public class Libro {
     private final int id;

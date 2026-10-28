@@ -1,4 +1,4 @@
-package biblioteca;
+package biblioteca.negocio;
 
 public class LibroService {
 
