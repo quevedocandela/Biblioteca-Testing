@@ -22,15 +22,23 @@ Los scripts están en la carpeta `sql/` y se ejecutan en pgAdmin, en este orden:
 
 ## 2. Configurar la conexión
 
-1. Copiar el archivo `db.properties.example` y renombrar la copia a `db.properties`.
-2. Completar el usuario y la contraseña de PostgreSQL.
+1. En `src/main/resources/`, copiar `db.properties.example` y renombrar la copia a `db.properties`.
+2. Completar los datos de PostgreSQL:
 
-El archivo `db.properties` no se sube al repositorio.
+   db.url=jdbc:postgresql://localhost:5432/biblioteca 
+   db.user=postgres
+   db.password=tu_contraseña
 
+El archivo `db.properties` no se sube al repositorio (está en `.gitignore`).
 ## 3. Ejecutar
 
-PENDIENTE: completar con Candela.
+Desde IntelliJ: abrir `src/main/java/biblioteca/presentacion/Main.java` y ejecutarlo (Run).
 
+Desde la terminal, en la carpeta del proyecto:
+
+    mvn compile exec:java
+
+Al iniciar se muestra el menú para elegir el perfil: Socio, Bibliotecario o Administrador.
 ## Perfiles y operaciones
 
 | Perfil | Operaciones |
