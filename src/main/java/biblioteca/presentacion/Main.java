@@ -3,6 +3,7 @@ package biblioteca.presentacion;
 import biblioteca.datos.ConexionBD;
 import biblioteca.datos.SocioDAO;
 import biblioteca.datos.LibroDAO;
+import biblioteca.datos.PrestamoDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -41,6 +42,14 @@ public class Main {
         System.out.println("Libro 1 prestado? " + libros.estaPrestado(1));
         System.out.println("Libro 2 prestado? " + libros.estaPrestado(2));
         System.out.println("Libro 8: " + libros.buscarPorId(8));
+
+        PrestamoDAO prestamos = new PrestamoDAO();
+        System.out.println("--- Sin devolver:");
+        prestamos.listarSinDevolver().forEach(System.out::println);
+        System.out.println("--- Historial del socio con id 1 (1001):");
+        prestamos.listarPorSocio(1).forEach(System.out::println);
+        System.out.println("Sin devolver del socio con id 4 (1004): " + prestamos.listarSinDevolverPorSocio(4).size());
+        System.out.println("Préstamo 3: " + prestamos.buscarPorId(3));
     }
 
 }
