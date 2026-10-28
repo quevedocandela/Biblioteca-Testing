@@ -4,6 +4,7 @@ import biblioteca.datos.ConexionBD;
 import biblioteca.datos.SocioDAO;
 import biblioteca.datos.LibroDAO;
 import biblioteca.datos.PrestamoDAO;
+import biblioteca.negocio.SocioService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,6 +32,15 @@ public class Main {
             System.out.println("Filas en " + tabla + ": " + rs.getInt(1));
         }
 
+        SocioService socios = new SocioService();
+        probar(() -> socios.registrar(1001, "99999999", "Ana", "Prueba"));  // número repetido
+        probar(() -> socios.registrar(2000, "40111222", "Ana", "Prueba"));  // DNI repetido
+        probar(() -> socios.registrar(2000, "abc", "Ana", "Prueba"));       // DNI inválido
+        probar(() -> socios.registrar(2000, "50123456", "  ", "Prueba"));   // nombre vacío
+        probar(() -> socios.darDeBaja(1004));                               // tiene 3 préstamos
+        probar(() -> socios.darDeBaja(1003));                               // ya está inactivo
+        probar(() -> socios.buscarPorNumero(9999));                         // no existe
+
         SocioDAO dao = new SocioDAO();
         dao.listarTodos().forEach(System.out::println);
         System.out.println("Buscar 1003: " + dao.buscarPorNumero(1003));
@@ -50,6 +60,17 @@ public class Main {
         prestamos.listarPorSocio(1).forEach(System.out::println);
         System.out.println("Sin devolver del socio con id 4 (1004): " + prestamos.listarSinDevolverPorSocio(4).size());
         System.out.println("Préstamo 3: " + prestamos.buscarPorId(3));
+
+
+    }
+
+    private static void probar(Runnable accion) {
+        try {
+            accion.run();
+            System.out.println("OK (no falló)");
+        } catch (RuntimeException e) {
+            System.out.println("Error esperado: " + e.getMessage());
+        }
     }
 
 }
